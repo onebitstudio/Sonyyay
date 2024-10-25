@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony Yay Live Channel by @simchan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #252525;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            text-align: center;
+            color: #ecf0f1;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        .animated-header {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+            background: linear-gradient(to right, #f3ec78, #af4261);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        video {
+            width: 95%; /* Smaller size */
+            border-radius: 12px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .volume-control, .playback-speed, .quality-enhance {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .volume-control input[type=range], .playback-speed select, .quality-enhance select {
+            width: 150px;
+        }
+        .volume-percentage {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #fff;
+        }
+        .playback-speed select, .quality-enhance select {
+            padding: 10px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            outline: none;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .playback-speed select:hover, .quality-enhance select:hover {
+            background-color: #2980b9;
+        }
+        .playback-speed select option, .quality-enhance select option {
+            background-color: #3498db;
+            color: #fff;
+        }
+        .quality-enhance select {
+            background-color: #e74c3c;
+        }
+        .quality-enhance select:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 98%;
+                margin: 10px;
+                padding: 15px;
+            }
+            .controls button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .volume-control input[type=range], .playback-speed select, .quality-enhance select {
+                width: 100px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <h1 class="animated-header">Sony Yay Live Channel by <a href="https://t.me/simchan"> @Simchan</a> </h1>
+        <video id="videoPlayer" controls>
+            <source src="https://dai.google.com/ssai/event/40H5HfwWTZadFGYkBTqagg/master.m3u8" type="application/x-mpegURL">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button id="play"><i class="fas fa-play"></i> Play</button>
+            <button id="pause"><i class="fas fa-pause"></i> Pause</button>
+            <button id="fullscreen"><i class="fas fa-expand"></i> Full Screen</button>
+        </div>
+        <div class="volume-control">
+            <label for="volume"><i class="fas fa-volume-up"></i></label>
+            <input type="range" id="volume" name="volume" min="0" max="1" step="0.01" value="1">
+            <span class="volume-percentage" id="volumePercentage">100%</span>
+        </div>
+        <div class="playback-speed">
+            <label for="playbackRate"><i class="fas fa-tachometer-alt"></i></label>
+            <select id="playbackRate">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+        </div>
+        <div class="quality-enhance">
+            <label for="quality"><i class="fas fa-highlighter"></i></label>
+            <select id="quality">
+                <option value="auto" selected>Auto</option>
+                <option value="720p">720p</option>
+                <option value="1080p">1080p</option>
+                <option value="4k">4K</option>
+            </select>
+        </div>
+        <footer>
+            <p>Enjoy Live Streaming of Sony Yay Join Telegram: <a href="https://t.me/simchan"> click to join </a> </p>
+        </footer>
+    </div>
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playButton = document.getElementById('play');
+        const pauseButton = document.getElementById('pause');
+        const fullScreenButton = document.getElementById('fullscreen');
+        const volumeSlider = document.getElementById('volume');
+        const volumePercentage = document.getElementById('volumePercentage');
+        const playbackRate = document.getElementById('playbackRate');
+        const quality = document.getElementById('quality');
+
+        playButton.addEventListener('click', () => {
+            videoPlayer.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            videoPlayer.pause();
+        });
+
+        fullScreenButton.addEventListener('click', () => {
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.webkitRequestFullscreen) { /* Safari */
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) { /* IE11 */
+                videoPlayer.msRequestFullscreen();
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            videoPlayer.volume = e.target.value;
+            volumePercentage.textContent = Math.round(e.target.value * 100) + '%';
+        });
+
+        playbackRate.addEventListener('change', (e) => {
+            videoPlayer.playbackRate = e.target.value;
+        });
+
+        quality.addEventListener('change', (e) => {
+            const selectedQuality = e.target.value;
+            // Placeholder logic for changing video quality
+            // Real implementation will depend on the video streaming service and API used
+            console.log(`Selected Quality: ${selectedQuality}`);
+        });
+    </script>
+</body>
+</html>
